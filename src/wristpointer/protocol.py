@@ -1,6 +1,7 @@
 """Messages from the Android relay, one per UDP datagram, ASCII.
 
-    a,<x>,<y>,<z>   accelerometer reading in milli-g (watch axes)
+    a,<x>,<y>,<z>[,<mx>,<my>,<mz>]
+                    accelerometer in milli-g, then magnetometer (any unit), watch axes
     k,next | k,prev slide change
     h               toggle the hand on/off
 """
@@ -14,6 +15,7 @@ class Accel:
     x: int
     y: int
     z: int
+    mag: tuple[int, int, int] | None = None
 
 
 @dataclass(frozen=True)
@@ -33,9 +35,9 @@ def parse(datagram: bytes) -> Accel | Key | ToggleHand | None:
     except UnicodeDecodeError:
         return None
     match parts:
-        case ["a", x, y, z]:
+        case ["a", x, y, z, *mag] if len(mag) in (0, 3):
             try:
-                return Accel(int(x), int(y), int(z))
+                return Accel(int(x), int(y), int(z), tuple(int(m) for m in mag) if mag else None)
             except ValueError:
                 return None
         case ["k", ("next" | "prev") as direction]:

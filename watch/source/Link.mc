@@ -54,9 +54,14 @@ class Link extends Communications.ConnectionListener {
             message = _keys[0];
             _keys = _keys.slice(1, null);
         } else {
-            var accel = Sensor.getInfo().accel;
+            var info = Sensor.getInfo();
+            var accel = info.accel;
             if (accel != null) {
                 message = "a," + accel[0] + "," + accel[1] + "," + accel[2];
+                var mag = info.mag;
+                if (mag != null) {
+                    message += "," + mag[0] + "," + mag[1] + "," + mag[2];
+                }
             }
         }
         if (message != null) {
