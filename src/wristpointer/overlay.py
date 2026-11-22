@@ -31,10 +31,6 @@ class HandOverlay(QWidget):
     def set_target(self, x: float, y: float) -> None:
         self.smoother.set_target(x, y)
 
-    def toggle(self) -> None:
-        self.visible_hand = not self.visible_hand
-        self.update()
-
     def _frame(self):
         if self.smoother.step() is not None:
             self.update()

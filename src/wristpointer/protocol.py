@@ -3,7 +3,7 @@
     a,<x>,<y>,<z>[,<mx>,<my>,<mz>]
                     accelerometer in milli-g, then magnetometer (any unit), watch axes
     k,next | k,prev slide change
-    h               toggle the hand on/off
+    h               re-centre: the next reading becomes mid-screen
 """
 from dataclasses import dataclass
 
@@ -24,11 +24,11 @@ class Key:
 
 
 @dataclass(frozen=True)
-class ToggleHand:
+class Recentre:
     pass
 
 
-def parse(datagram: bytes) -> Accel | Key | ToggleHand | None:
+def parse(datagram: bytes) -> Accel | Key | Recentre | None:
     """Parse one datagram; returns None for anything malformed."""
     try:
         parts = datagram.decode("ascii").strip().split(",")
@@ -43,5 +43,5 @@ def parse(datagram: bytes) -> Accel | Key | ToggleHand | None:
         case ["k", ("next" | "prev") as direction]:
             return Key(direction)
         case ["h"]:
-            return ToggleHand()
+            return Recentre()
     return None

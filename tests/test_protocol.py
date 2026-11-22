@@ -1,4 +1,4 @@
-from wristpointer.protocol import Accel, Key, ToggleHand, parse
+from wristpointer.protocol import Accel, Key, Recentre, parse
 
 
 def test_accel():
@@ -10,8 +10,8 @@ def test_keys():
     assert parse(b"k,prev\n") == Key("prev")
 
 
-def test_toggle():
-    assert parse(b"h") == ToggleHand()
+def test_recentre():
+    assert parse(b"h") == Recentre()
 
 
 def test_garbage_is_ignored():

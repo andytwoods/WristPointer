@@ -22,7 +22,7 @@ class StatusView extends WatchUi.View {
         dc.drawText(cx, h * 0.22, Graphics.FONT_SMALL, "Wrist Pointer", Graphics.TEXT_JUSTIFY_CENTER);
         dc.drawText(cx, h * 0.42, Graphics.FONT_MEDIUM, status, Graphics.TEXT_JUSTIFY_CENTER);
         dc.drawText(cx, h * 0.66, Graphics.FONT_XTINY, "Down next / Up back", Graphics.TEXT_JUSTIFY_CENTER);
-        dc.drawText(cx, h * 0.76, Graphics.FONT_XTINY, "Start: hand on/off", Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(cx, h * 0.76, Graphics.FONT_XTINY, "Start: re-centre", Graphics.TEXT_JUSTIFY_CENTER);
     }
 }
 

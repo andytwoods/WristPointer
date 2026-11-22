@@ -55,7 +55,7 @@ class Receiver(QObject):
                 self.overlay.set_target(*self.mapping.to_screen(x, y, z, geo.width(), geo.height(), self.centre))
             case protocol.Key(direction):
                 keys.press(direction)
-            case protocol.ToggleHand():
+            case protocol.Recentre():
                 # The watch's Start button: wherever the arm points next becomes mid-screen.
                 self.centre = None
 
