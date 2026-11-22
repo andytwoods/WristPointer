@@ -1,7 +1,7 @@
 # Wrist Pointer
 
 Tilt your wrist and a ☝️ hand moves over your slides. The watch's Down button moves to the
-next slide, Up goes back, and Start shows or hides the hand.
+next slide, Up goes back, and Start re-centres: point at the middle of the screen and press it.
 
 ```
 fēnix 6S Pro ──Bluetooth──▶ Android relay app ──UDP 47800 (Wi-Fi)──▶ Mac overlay + arrow keys
@@ -26,8 +26,8 @@ slides don't change. The arrow keys go to the app in front, so click into the sl
 first. Works with PowerPoint, Keynote and PDF viewers.
 
 Tuning: `--invert-x` / `--invert-y` if the hand moves the wrong way; the sweep angles are
-`TiltMapping.roll_range` / `pitch_range` in `mapping.py`. Start re-centres: wherever your
-wrist is on the next reading becomes mid-screen.
+`PointMapping.yaw_range` / `elevation_range` in `mapping.py` (`--mode tilt` uses wrist twist
+instead). Start re-centres: wherever your arm points on the next reading becomes mid-screen.
 
 ## Watch app (`watch/`)
 

@@ -56,8 +56,8 @@ class Receiver(QObject):
             case protocol.Key(direction):
                 keys.press(direction)
             case protocol.ToggleHand():
-                self.centre = None  # re-centre on the next reading
-                self.overlay.toggle()
+                # The watch's Start button: wherever the arm points next becomes mid-screen.
+                self.centre = None
 
 
 def main():

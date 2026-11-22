@@ -46,8 +46,11 @@ class HandOverlay(QWidget):
         p = QPainter(self)
         p.setFont(self.font)
         p.setPen(QColor("white"))
-        # Put the fingertip, not the glyph's corner, on the target point.
-        p.drawText(QPointF(pos[0] - self.size * 0.45, pos[1] + self.size * 1.1), HAND)
+        # Put the fingertip, not the glyph's corner, on the target point, and keep the
+        # whole glyph on screen even when the target is pinned to an edge.
+        x = min(max(pos[0] - self.size * 0.45, 0), self.width() - self.size * 1.2)
+        y = min(max(pos[1] + self.size * 1.1, self.size * 1.2), self.height() - self.size * 0.2)
+        p.drawText(QPointF(x, y), HAND)
 
 
 def _float_over_fullscreen(widget: QWidget) -> None:
