@@ -1,0 +1,25 @@
+[project]
+name = "wristpointer"
+version = "0.1.0"
+description = "Garmin watch tilt moves a virtual hand over a presentation; watch buttons change slides."
+requires-python = ">=3.13"
+dependencies = [
+    "PyQt6>=6.7",
+    "pyobjc-framework-Cocoa>=10.3",
+    "pyobjc-framework-Quartz>=10.3",
+    "pyobjc-framework-ApplicationServices>=10.3",
+]
+
+[project.scripts]
+wristpointer = "wristpointer.main:main"
+wristpointer-fake = "wristpointer.fake_sender:main"
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
